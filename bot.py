@@ -4,7 +4,6 @@ import random
 import time
 from openai import OpenAI
 
-# ===== اطلاعات از Secrets خونده می‌شه =====
 TELEGRAM_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
 TELEGRAM_CHANNEL_ID = os.environ["TELEGRAM_CHANNEL_ID"]
 EITAA_TOKEN = os.environ["EITAA_TOKEN"]
@@ -92,6 +91,7 @@ print("ربات شروع شد...")
 while True:
     try:
         lesson = generate_lesson()
+        lesson += "\n\n📌 @Zaaban_English"
         
         if send_to_telegram(lesson):
             print(f"✅ تلگرام: ارسال شد")
@@ -103,7 +103,7 @@ while True:
         else:
             print(f"❌ ایتا: خطا")
         
-        time.sleep(900)  # هر 15 دقیقه
+        time.sleep(900)
         
     except Exception as e:
         print(f"❌ خطا: {e}")
